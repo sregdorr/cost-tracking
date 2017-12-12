@@ -1,19 +1,13 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 const propTypes = {
-  
+  history: PropTypes.object.isRequired,
 };
 
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: inherit;
-`;
-
 const Container = styled.div`
-  width: 150px;
+  width: 175px;
   background: #d9d9d9;
 `;
 
@@ -39,20 +33,42 @@ const navRoutes = [
   {
     label: 'Projects',
     path: '/projects',
-  }
+  },
+  {
+    label: 'Vendors',
+    path: '/vendors',
+  },
+  {
+    label: 'Purchase Orders',
+    path: '/purchase-orders',
+  },
+  {
+    label: 'Invoices',
+    path: '/invoices',
+  },
 ];
 
-const AppDrawer = () => {
-  const navItems = navRoutes.map(item => (
-    <DrawerItem><StyledLink to={item.path}>{item.label}</StyledLink></DrawerItem>
-  ));
+class AppDrawer extends Component {
+  onItemClick(path) {
+    this.props.history.push(path);
+  }
 
-  return (
-    <Container>
-      {navItems}
-    </Container>
-  );
-};
+  render() {
+    const navItems = navRoutes.map(item => (
+      <DrawerItem 
+        onClick={this.onItemClick.bind(this, item.path)}
+      >
+        {item.label}
+      </DrawerItem>
+    ));
+  
+    return (
+      <Container>
+        {navItems}
+      </Container>
+    );
+  }
+}
 
 
 AppDrawer.propTypes = propTypes;

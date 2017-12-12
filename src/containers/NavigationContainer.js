@@ -5,6 +5,7 @@ import { Switch } from 'react-router-dom';
 
 import AppDrawer from '../components/AppDrawer';
 import ClientPage from '../components/clients/clientPage';
+import ProjectsPage from '../components/projects/ProjectsPage';
 import HomePage from '../components/HomePage';
 
 
@@ -27,11 +28,12 @@ class NavigationContainer extends Component {
   render() {
     return (
       <Container>
-        <AppDrawer />
+        <AppDrawer history={this.props.history} />
         <MainContent>
           <Switch>
             <Route exact path='/' component={HomePage}/>
             <Route path='/clients' component={ClientPage}></Route>
+            <Route path='/projects' component={ProjectsPage}></Route>
           </Switch>
         </MainContent>
       </Container>

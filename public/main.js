@@ -32,6 +32,11 @@ function createWindow() {
 app.on('ready', async () => {
   if (isDev) {
     await installExtensions;
+  }
+
+  createWindow();
+
+  if (isDev) {
     mainWindow.webContents.openDevTools();
     mainWindow.webContents.on('context-menu', (e, props) => {
       Menu.buildFromTemplate([{
@@ -42,8 +47,6 @@ app.on('ready', async () => {
       }]).popup(mainWindow);
     });
   }
-
-  createWindow();
 });
 
 app.on('window-all-closed', () => {
