@@ -6,7 +6,7 @@ function sendNotification({ eventArg, payload=null }) {
   ipcRenderer.send(eventArg, payload);
 }
 
-function* requestClientsSaga(action) {
+function* requestClientsSaga() {
   yield call(sendNotification, { eventArg: "test:send" });
 }
 

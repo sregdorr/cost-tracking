@@ -63,5 +63,7 @@ app.on('activate', () => {
 });
 
 ipcMain.on('test:send', () => {
-  console.log('test worked!');
+  db.query('SELECT * FROM clients WHERE id = 2')
+    .then(res => console.log(res.rows[0]))
+    .catch(e => console.error(e.stack));
 });

@@ -26,7 +26,7 @@ ClientContainer.propTypes = {
   prop: PropTypes.string,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = () => ({
   
 });
 
