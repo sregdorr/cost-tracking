@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import { Switch } from 'react-router-dom';
 
 import AppDrawer from '../components/AppDrawer';
-import ClientPage from '../components/clients/clientPage';
 import ProjectsPage from '../components/projects/ProjectsPage';
 import HomePage from '../components/HomePage';
+import ClientContainer from './ClientContainer';
 
 
 const Container = styled.div`
@@ -32,7 +32,7 @@ class NavigationContainer extends Component {
         <MainContent>
           <Switch>
             <Route exact path='/' component={HomePage}/>
-            <Route path='/clients' component={ClientPage}></Route>
+            <Route path='/clients' component={ClientContainer}></Route>
             <Route path='/projects' component={ProjectsPage}></Route>
           </Switch>
         </MainContent>

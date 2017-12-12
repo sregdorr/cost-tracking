@@ -8,6 +8,7 @@
     "node": ">=7.0.0"
   },
   "dependencies": {
+    "concurrently": "^3.5.1",
     "electron-is-dev": "^0.3.0",
     "history": "^4.7.2",
     "pg": "^7.4.0",
@@ -36,7 +37,6 @@
     "pack": "electron-builder"
   },
   "devDependencies": {
-    "concurrently": "^3.5.1",
     "electron": "^1.7.9",
     "electron-builder": "^19.48.3",
     "electron-devtools-installer": "^2.2.1",
