@@ -1,25 +1,33 @@
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
+import styled from 'styled-components';
+import { Route } from 'react-router';
 
-import logo from '../logo.svg';
-import './App.css';
-import TestPage from "./TestPage";
+import NavigationContainer from '../containers/NavigationContainer';
+
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
+const Header = styled.div`
+  position: fixed;
+  width: 100%;
+  padding: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #e5e5e5;
+  background: #ea9124;
+  z-index: 1000;
+`;
 
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo"/>
-          <h1 className="App-title">My name is Russ</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Link to='/test'>Test Route</Link>
-        <Route path={'/test'} component={TestPage} />
-      </div>
+      <Container>
+        <Header>Project Cost Tracking</Header>
+        <Route component={NavigationContainer} />
+      </Container>
     );
   }
 }

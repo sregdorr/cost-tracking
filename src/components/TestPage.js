@@ -1,10 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import ReactTable from 'react-table';
+// import PropTypes from 'prop-types';
 
-const TestPage = props => {
+const TestPage = () => {
   return (
     <div>
-      Testing
+      
     </div>
   );
 };

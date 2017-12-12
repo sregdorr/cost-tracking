@@ -6,8 +6,12 @@ const { default: installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = req
 
 let mainWindow;
 
+
 function createWindow() {
-  mainWindow = new BrowserWindow({ width: 900, height: 680 });
+  mainWindow = new BrowserWindow({ 
+    width: 900,
+    height: 680,
+  });
   mainWindow.loadURL(isDev ? 'http://localhost:3000' :
     `file://${path.join(__dirname, '../build/index.html')}`);
 
