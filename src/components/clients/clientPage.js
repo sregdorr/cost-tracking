@@ -7,6 +7,7 @@ import ClientTable from './ClientTable';
 
 
 const propTypes = {
+  match: PropTypes.object.isRequired,
   clients: PropTypes.array.isRequired,
 };
 

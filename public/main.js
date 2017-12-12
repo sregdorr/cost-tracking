@@ -1,7 +1,8 @@
 const electron = require('electron');
-const { app, BrowserWindow, Menu } = electron;
+const { app, BrowserWindow, Menu, ipcMain } = electron;
 const isDev = require('electron-is-dev');
 const path = require('path');
+const db = require('../src/db');
 
 
 let mainWindow;
@@ -31,7 +32,7 @@ function createWindow() {
 
 app.on('ready', async () => {
   if (isDev) {
-    await installExtensions;
+    await installExtensions();
   }
 
   createWindow();
@@ -59,4 +60,8 @@ app.on('activate', () => {
   if (mainWindow === null) {
     createWindow();
   }
+});
+
+ipcMain.on('test:send', () => {
+  console.log('test worked!');
 });
