@@ -3,17 +3,15 @@ import {
   REQUEST_CLIENTS,
   requestClientsSucceeded,
   requestClientsFailed
-} from "../actions";
-import * as api from '../../services/api';
+} from "../actions/clientActions";
+import * as api from '../../services/clientsApi';
 
 function* requestClientsSaga() {
   try {
     const response = yield api.fetchClients();
-    yield console.log(response);
     yield put(requestClientsSucceeded(response));
   }
   catch (err) {
-    yield console.log('error', err);
     yield put(requestClientsFailed(err));
   }
 

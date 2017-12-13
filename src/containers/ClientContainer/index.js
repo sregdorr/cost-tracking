@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ClientPage from '../../components/clients/ClientPage';
-import { requestClients } from '../../entities/actions';
+import { requestClients } from '../../entities/actions/clientActions';
+import { clientContainerSelect } from './clientContainerSelectors';
 
 
 export class ClientContainer extends Component {
@@ -14,20 +15,24 @@ export class ClientContainer extends Component {
 
 
   render() {
+    const { match, clientContainer } = this.props;
     return (
       <div>
-        <ClientPage match={this.props.match} />
+        <ClientPage
+          match={match}
+          clients={clientContainer.visibleClients}
+        />
       </div>
     );
   }
 }
 
 ClientContainer.propTypes = {
-  prop: PropTypes.string,
+  clientContainer: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = () => ({
-  
+const mapStateToProps = (state) => ({
+  clientContainer: clientContainerSelect(state)
 });
 
 const mapDispatchToProps = (dispatch) => {

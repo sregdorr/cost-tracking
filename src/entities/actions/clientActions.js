@@ -4,6 +4,14 @@ export const REQUEST_CLIENTS = 'REQUEST_CLIENTS';
 export const REQUEST_CLIENTS_SUCCESS = 'REQUEST_CLIENTS_SUCCESS';
 export const REQUEST_CLIENTS_FAILED = 'REQUEST_CLIENTS_FAILED';
 
+
+
+export const resetErrorMessage = () => {
+  return ({
+    type: RESET_ERROR_MESSAGE,
+  });
+};
+
 export const requestClients = () => {
   return ({
     type: REQUEST_CLIENTS,
@@ -22,6 +30,7 @@ export const requestClientsSucceeded = (response) => {
 export const requestClientsFailed = (error) => {
   return ({
     type: REQUEST_CLIENTS_FAILED,
-    error
+    error,
+    key: 'visibleClients',
   });
 };

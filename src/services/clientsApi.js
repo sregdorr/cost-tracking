@@ -5,6 +5,7 @@ import { Schemas } from '../entities/schemas';
 
 const ROOT_URL = 'http://localhost:8000/api';
 const token = '59dc78a092e670a4e8915e03698812e7513031bc';
+// const token = '';
 
 export const fetchClients = () => {
   const url = `${ROOT_URL}/clients/`;
@@ -21,5 +22,8 @@ export const fetchClients = () => {
       return Object.assign({},
         normalizedData
       );
+    })
+    .catch(response => {
+      return response.response.data.detail;
     });
 };

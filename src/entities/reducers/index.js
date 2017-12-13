@@ -4,7 +4,7 @@ import {
   REQUEST_CLIENTS,
   REQUEST_CLIENTS_SUCCESS,
   REQUEST_CLIENTS_FAILED,
-} from '../actions';
+} from '../actions/clientActions';
 import merge from 'lodash/merge';
 import paginate from './paginate';
 import { combineReducers } from 'redux';
@@ -46,6 +46,14 @@ const pagination = combineReducers({
       REQUEST_CLIENTS_FAILED,
     ]
   }),
+  projects: paginate({
+    mapActionToKey: action => action.key,
+    types: [
+      REQUEST_CLIENTS,
+      REQUEST_CLIENTS_SUCCESS,
+      REQUEST_CLIENTS_FAILED,
+    ]
+  })
 });
 
 const reducers = {
