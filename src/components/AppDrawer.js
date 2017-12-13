@@ -55,7 +55,8 @@ class AppDrawer extends Component {
 
   render() {
     const navItems = navRoutes.map(item => (
-      <DrawerItem 
+      <DrawerItem
+        key={item.label}
         onClick={this.onItemClick.bind(this, item.path)}
       >
         {item.label}

@@ -8,7 +8,11 @@ const db = require('../src/db');
 let mainWindow;
 
 const installExtensions = async () => {
-  const { default: installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = require('electron-devtools-installer');
+  const {
+    default: installExtension,
+    REACT_DEVELOPER_TOOLS,
+    REDUX_DEVTOOLS
+  } = require('electron-devtools-installer');
 
   await installExtension(REACT_DEVELOPER_TOOLS)
     .then((name) => console.log(`Added Extension:  ${name}`))
@@ -60,10 +64,4 @@ app.on('activate', () => {
   if (mainWindow === null) {
     createWindow();
   }
-});
-
-ipcMain.on('test:send', () => {
-  db.query('SELECT * FROM clients WHERE id = 2')
-    .then(res => console.log(res.rows[0]))
-    .catch(e => console.error(e.stack));
 });

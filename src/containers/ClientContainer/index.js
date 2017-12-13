@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ClientPage from '../../components/clients/ClientPage';
-import { requestClients } from './clientContainerActions';
+import { requestClients } from '../../entities/actions';
 
 
 export class ClientContainer extends Component {
