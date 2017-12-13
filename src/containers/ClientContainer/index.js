@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ClientPage from '../../components/clients/ClientPage';
 import { requestClients } from '../../entities/actions/clientActions';
+import { selectClient } from './clientContainerActions';
 import { clientContainerSelect } from './clientContainerSelectors';
 
 
@@ -15,12 +16,14 @@ export class ClientContainer extends Component {
 
 
   render() {
-    const { match, clientContainer } = this.props;
+    const { match, clientContainer, selectClient } = this.props;
     return (
       <div>
         <ClientPage
           match={match}
           clients={clientContainer.visibleClients}
+          selectedClient={clientContainer.selectedClient}
+          selectClient={selectClient}
         />
       </div>
     );
@@ -38,6 +41,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     requestClients: requestClients,
+    selectClient: selectClient,
   }, dispatch);
 };
 

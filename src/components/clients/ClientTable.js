@@ -16,6 +16,8 @@ import * as moment from 'moment';
 const propTypes = {
   classes: PropTypes.object.isRequired,
   clients: PropTypes.array.isRequired,
+  selectedClient: PropTypes.number,
+  selectClient: PropTypes.func.isRequired,
 };
 
 const styles = theme => ({
@@ -32,7 +34,8 @@ const styles = theme => ({
 
 class ClientTable extends Component {
   render() {
-    const { clients, classes } = this.props;
+    const { clients, classes,
+      selectedClient, selectClient } = this.props;
 
     const renderData = clients.map(client => {
       const localDateTime = moment(client.createdDate).local().format('YYYY-MM-DD h:mm:ss a');
@@ -41,6 +44,8 @@ class ClientTable extends Component {
         <TableRow
           key={client.id}
           hover
+          selected={client.id === selectedClient}
+          onClick={() => selectClient(client.id)}
         >
           <TableCell>{client.id}</TableCell>
           <TableCell>{client.clientName}</TableCell>

@@ -9,6 +9,8 @@ import ClientTable from './ClientTable';
 const propTypes = {
   match: PropTypes.object.isRequired,
   clients: PropTypes.array.isRequired,
+  selectedClient: PropTypes.number,
+  selectClient: PropTypes.func.isRequired,
 };
 
 const Header = styled.div`
@@ -19,14 +21,19 @@ const Header = styled.div`
 
 class ClientPage extends Component {
   render() {
-    const { match, clients } = this.props;
+    const { clients, selectedClient, selectClient } = this.props;
 
     return (
       <div>
         <Header>Manage Clients</Header>
         <Switch>
-          <Route to={`${match.url}/list`} render={props =>
-            <ClientTable {...props} clients={clients}/>
+          <Route to={`clients/list`} render={props =>
+            <ClientTable
+              {...props}
+              clients={clients}
+              selectedClient={selectedClient}
+              selectClient={selectClient}
+            />
           }/>
         </Switch>
       </div>
