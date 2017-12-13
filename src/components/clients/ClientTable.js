@@ -33,9 +33,13 @@ const styles = theme => ({
 
 
 class ClientTable extends Component {
+  handleAddClick() {
+    this.props.history.push('clients/detail');
+  }
+
   render() {
     const { clients, classes,
-      selectedClient, selectClient } = this.props;
+      selectedClient, selectClient, history } = this.props;
 
     const renderData = clients.map(client => {
       const localDateTime = moment(client.createdDate).local().format('YYYY-MM-DD h:mm:ss a');
@@ -60,7 +64,7 @@ class ClientTable extends Component {
     return (
       <div>
         <div>
-          <IconButton style={{fontSize: 30}}>
+          <IconButton style={{fontSize: 30}} onClick={this.handleAddClick.bind(this)}>
             <AddIcon />
           </IconButton>
           <IconButton style={{fontSize: 30}}>

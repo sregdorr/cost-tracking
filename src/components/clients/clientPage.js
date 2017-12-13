@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Route, Switch } from 'react-router-dom';
 
 import ClientTable from './ClientTable';
+import ClientDetail from './ClientDetail';
 
 
 const propTypes = {
@@ -27,7 +28,7 @@ class ClientPage extends Component {
       <div>
         <Header>Manage Clients</Header>
         <Switch>
-          <Route to={`clients/list`} render={props =>
+          <Route exact path={`/clients`} render={props =>
             <ClientTable
               {...props}
               clients={clients}
@@ -35,6 +36,7 @@ class ClientPage extends Component {
               selectClient={selectClient}
             />
           }/>
+          <Route path={'/clients/detail'} component={ClientDetail}/>
         </Switch>
       </div>
     );
