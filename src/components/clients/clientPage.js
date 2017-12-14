@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { Route, Switch } from 'react-router-dom';
+import Typography from 'material-ui/Typography';
 
 import ClientTable from './ClientTable';
 import ClientDetail from './ClientDetail';
@@ -14,11 +14,6 @@ const propTypes = {
   selectClient: PropTypes.func.isRequired,
 };
 
-const Header = styled.div`
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
-`;
 
 class ClientPage extends Component {
   render() {
@@ -26,7 +21,7 @@ class ClientPage extends Component {
 
     return (
       <div>
-        <Header>Manage Clients</Header>
+        <Typography type='display1'>Manage Clients</Typography>
         <Switch>
           <Route exact path={`/clients`} render={props =>
             <ClientTable

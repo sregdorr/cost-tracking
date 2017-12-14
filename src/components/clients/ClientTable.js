@@ -39,7 +39,7 @@ class ClientTable extends Component {
 
   render() {
     const { clients, classes,
-      selectedClient, selectClient, history } = this.props;
+      selectedClient, selectClient } = this.props;
 
     const renderData = clients.map(client => {
       const localDateTime = moment(client.createdDate).local().format('YYYY-MM-DD h:mm:ss a');
