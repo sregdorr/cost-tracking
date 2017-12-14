@@ -12,12 +12,14 @@ const propTypes = {
   clients: PropTypes.array.isRequired,
   selectedClient: PropTypes.number,
   selectClient: PropTypes.func.isRequired,
+  addClient: PropTypes.func.isRequired,
 };
 
 
 class ClientPage extends Component {
   render() {
-    const { clients, selectedClient, selectClient } = this.props;
+    const { clients, selectedClient,
+      selectClient, addClient } = this.props;
 
     return (
       <div>
@@ -31,7 +33,12 @@ class ClientPage extends Component {
               selectClient={selectClient}
             />
           }/>
-          <Route path={'/clients/detail'} component={ClientDetail}/>
+          <Route path={'/clients/detail'} render={props =>
+            <ClientDetail
+              {...props}
+              addClient={addClient}
+            />
+          }/>
         </Switch>
       </div>
     );

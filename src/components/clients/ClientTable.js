@@ -31,7 +31,6 @@ const styles = theme => ({
   }
 });
 
-
 class ClientTable extends Component {
   handleAddClick() {
     this.props.history.push('clients/detail');

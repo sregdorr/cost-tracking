@@ -1,12 +1,13 @@
 /* eslint-disable indent */
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { reduxForm, Field } from 'redux-form';
 import { withStyles } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import Paper from 'material-ui/Paper';
+import { requestAddClient } from "../../entities/actions/clientActions";
 
 
 const styles = theme => ({
@@ -61,7 +62,7 @@ class ClientDetail extends Component {
     } = this.props;
 
     const submit = values => {
-      console.log(values);
+      this.props.addClient(values);
     };
 
     return (
@@ -125,7 +126,9 @@ class ClientDetail extends Component {
   }
 }
 
-ClientDetail.propTypes = {};
+ClientDetail.propTypes = {
+  addClient: PropTypes.func.isRequired,
+};
 
 export default reduxForm({
   form: 'clientDetail',

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ClientPage from '../../components/clients/ClientPage';
-import { requestClients } from '../../entities/actions/clientActions';
+import { requestClients, requestAddClient } from '../../entities/actions/clientActions';
 import { selectClient } from './clientContainerActions';
 import { clientContainerSelect } from './clientContainerSelectors';
 
@@ -16,7 +16,9 @@ export class ClientContainer extends Component {
 
 
   render() {
-    const { match, clientContainer, selectClient } = this.props;
+    const { match, clientContainer,
+      selectClient, addClient } = this.props;
+
     return (
       <div>
         <ClientPage
@@ -24,6 +26,7 @@ export class ClientContainer extends Component {
           clients={clientContainer.visibleClients}
           selectedClient={clientContainer.selectedClient}
           selectClient={selectClient}
+          addClient={addClient}
         />
       </div>
     );
@@ -42,6 +45,7 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     requestClients: requestClients,
     selectClient: selectClient,
+    addClient: requestAddClient,
   }, dispatch);
 };
 

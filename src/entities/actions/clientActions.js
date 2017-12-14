@@ -4,6 +4,10 @@ export const REQUEST_CLIENTS = 'REQUEST_CLIENTS';
 export const REQUEST_CLIENTS_SUCCESS = 'REQUEST_CLIENTS_SUCCESS';
 export const REQUEST_CLIENTS_FAILED = 'REQUEST_CLIENTS_FAILED';
 
+export const REQUEST_ADD_CLIENT = 'REQUEST_ADD_CLIENT';
+export const REQUEST_ADD_CLIENT_SUCCESS = 'REQUEST_ADD_CLIENT_SUCCESS';
+export const REQUEST_ADD_CLIENT_FAILED = 'REQUEST_ADD_CLIENT_FAILED';
+
 
 
 export const resetErrorMessage = () => {
@@ -32,6 +36,27 @@ export const requestClientsFailed = (error) => {
     type: REQUEST_CLIENTS_FAILED,
     error,
     key: 'visibleClients',
+  });
+};
+
+export const requestAddClient = (client) => {
+  return ({
+    type: REQUEST_ADD_CLIENT,
+    client,
+  });
+};
+
+export const requestAddClientSuccess = (id) => {
+  return ({
+    type: REQUEST_ADD_CLIENT_SUCCESS,
+    id,
+  });
+};
+
+export const requestAddClientFailed = error => {
+  return ({
+    type: REQUEST_ADD_CLIENT_FAILED,
+    error,
   });
 };
 
