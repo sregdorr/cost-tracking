@@ -15,8 +15,9 @@ import * as moment from 'moment';
 
 const propTypes = {
   classes: PropTypes.object.isRequired,
+  requestClients: PropTypes.func.isRequired,
   clients: PropTypes.array.isRequired,
-  selectedClient: PropTypes.number,
+  selectedClient: PropTypes.object,
   selectClient: PropTypes.func.isRequired,
 };
 
@@ -28,11 +29,34 @@ const styles = theme => ({
   },
   table: {
     minWidth: 700,
+  },
+  tableRow: {
+    '&:hover': {
+      cursor: "pointer"
+    }
   }
 });
 
-class ClientTable extends Component {
+class ClientTable extends Component{
+  constructor(props) {
+    super(props);
+
+    this.handleAddClick = this.handleAddClick.bind(this);
+    this.handleEditClick = this.handleEditClick.bind(this);
+  }
+
+
+  componentDidMount() {
+    this.props.requestClients();
+  }
+
+
   handleAddClick() {
+    this.props.selectClient(null);
+    this.props.history.push('clients/detail');
+  }
+
+  handleEditClick() {
     this.props.history.push('clients/detail');
   }
 
@@ -45,10 +69,11 @@ class ClientTable extends Component {
 
       return (
         <TableRow
+          className={classes.tableRow}
           key={client.id}
           hover
-          selected={client.id === selectedClient}
-          onClick={() => selectClient(client.id)}
+          selected={selectedClient ? client.id === selectedClient.id : false}
+          onClick={() => selectClient(client)}
         >
           <TableCell>{client.id}</TableCell>
           <TableCell>{client.clientName}</TableCell>
@@ -63,10 +88,10 @@ class ClientTable extends Component {
     return (
       <div>
         <div>
-          <IconButton style={{fontSize: 30}} onClick={this.handleAddClick.bind(this)}>
+          <IconButton style={{fontSize: 30}} onClick={this.handleAddClick}>
             <AddIcon />
           </IconButton>
-          <IconButton style={{fontSize: 30}}>
+          <IconButton style={{fontSize: 30}} onClick={this.handleEditClick}>
             <EditIcon />
           </IconButton>
           <IconButton style={{fontSize: 30}}>

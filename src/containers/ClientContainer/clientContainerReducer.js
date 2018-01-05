@@ -9,7 +9,7 @@ export default function (state = initialState, action) {
   case SELECT_CLIENT:
     return {
       ...state,
-      selectedClient: action.id,
+      selectedClient: action.client,
     };
   default:
     return state;

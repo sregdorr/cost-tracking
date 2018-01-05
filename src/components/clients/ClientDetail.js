@@ -36,7 +36,21 @@ const required = value => (value ? undefined : 'Required');
 class ClientDetail extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      isEditMode: false
+    };
+
     this.renderTextField = this.renderTextField.bind(this);
+  }
+
+
+  componentDidMount() {
+    if (this.props.initialValues) {
+      this.setState({
+        isEditMode: true,
+      });
+    }
   }
 
 
@@ -58,11 +72,13 @@ class ClientDetail extends Component {
   render() {
     const {
       handleSubmit, pristine,
-      reset, submitting, classes
+      reset, submitting, classes,
     } = this.props;
 
     const submit = values => {
-      this.props.addClient(values);
+      this.state.isEditMode ?
+        this.props.editClient(values) :
+        this.props.addClient(values);
     };
 
     return (
@@ -128,6 +144,8 @@ class ClientDetail extends Component {
 
 ClientDetail.propTypes = {
   addClient: PropTypes.func.isRequired,
+  editClient: PropTypes.func.isRequired,
+  initialValues: PropTypes.object,
 };
 
 export default reduxForm({

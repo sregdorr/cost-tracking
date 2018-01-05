@@ -1,11 +1,13 @@
 import { all, takeLatest, put, call } from 'redux-saga/effects';
+import { goBack } from 'react-router-redux';
+
 import {
   REQUEST_CLIENTS,
   requestClientsSucceeded,
   requestClientsFailed,
   REQUEST_ADD_CLIENT,
-  requestAddClientSuccess,
-  requestAddClientFailed,
+  requestAddClientSuccess, REQUEST_EDIT_CLIENT, requestAddClientFailed, requestEditClientFailed,
+  requestEditClientSuccess,
 } from "../actions/clientActions";
 import * as api from '../../services/clientsApi';
 
@@ -21,11 +23,23 @@ function* requestClientsSaga() {
 
 function* requestAddClientSaga(action) {
   try {
-    const response = yield api.putClient(action.client);
+    const response = yield api.postClient(action.client);
     yield put(requestAddClientSuccess(response.id));
+    yield put(goBack());
   }
   catch (err) {
-    yield put(requestClientsFailed(err));
+    yield put(requestAddClientFailed(err));
+  }
+}
+
+function* requestEditClientSaga(action){
+  try {
+    const response = yield api.putClient(action.client);
+    yield put(requestEditClientSuccess(response.id));
+    yield put(goBack());
+  }
+  catch (err) {
+    yield put(requestEditClientFailed(err));
   }
 }
 
@@ -37,9 +51,14 @@ function* watchRequestAddClient() {
   yield takeLatest(REQUEST_ADD_CLIENT, requestAddClientSaga);
 }
 
+function* watchRequestEditClient(){
+  yield takeLatest(REQUEST_EDIT_CLIENT, requestEditClientSaga);
+}
+
 export default function* defaultSaga() {
   yield all([
     watchRequestClients(),
     watchRequestAddClient(),
+    watchRequestEditClient(),
   ]);
 }

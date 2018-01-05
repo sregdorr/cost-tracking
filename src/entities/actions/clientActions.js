@@ -8,6 +8,10 @@ export const REQUEST_ADD_CLIENT = 'REQUEST_ADD_CLIENT';
 export const REQUEST_ADD_CLIENT_SUCCESS = 'REQUEST_ADD_CLIENT_SUCCESS';
 export const REQUEST_ADD_CLIENT_FAILED = 'REQUEST_ADD_CLIENT_FAILED';
 
+export const REQUEST_EDIT_CLIENT = 'REQUEST_EDIT_CLIENT';
+export const REQUEST_EDIT_CLIENT_SUCCESS = 'REQUEST_EDIT_CLIENT_SUCCESS';
+export const REQUEST_EDIT_CLIENT_FAILED = 'REQUEST_EDIT_CLIENT_FAILED';
+
 
 
 export const resetErrorMessage = () => {
@@ -56,6 +60,27 @@ export const requestAddClientSuccess = (id) => {
 export const requestAddClientFailed = error => {
   return ({
     type: REQUEST_ADD_CLIENT_FAILED,
+    error,
+  });
+};
+
+export const requestEditClient = (client) => {
+  return ({
+    type: REQUEST_EDIT_CLIENT,
+    client,
+  });
+};
+
+export const requestEditClientSuccess = (id) => {
+  return ({
+    type: REQUEST_EDIT_CLIENT_SUCCESS,
+    id,
+  });
+};
+
+export const requestEditClientFailed = error => {
+  return ({
+    type: REQUEST_EDIT_CLIENT_FAILED,
     error,
   });
 };
